@@ -1,4 +1,39 @@
-from node import Node
+from node import DNode
+from doublyLL import DoublyLinkedList
+
+
+
+# create a new instance of the DoublyLinkedList class
+dll = DoublyLinkedList()
+
+# create some DNode instances to insert into the list
+node1 = DNode(1)
+node2 = DNode(2)
+node3 = DNode(3)
+
+# insert nodes into the list
+dll.insert_head(node1)
+dll.insert_tail(node2)
+dll.insert(node3, 1)
+
+# print the contents of the list
+curr = dll.head
+while curr is not None:
+    print(curr.value)
+    curr = curr.next
+
+# delete a node from the list
+dll.Delete(node2)
+
+# print the contents of the list again
+curr = dll.head
+while curr is not None:
+    print(curr.value)
+    curr = curr.next
+
+
+
+"""from node import Node
 from singlyLL import SinglyLinkedList
 
 # create an instance of SinglyLinkedList
@@ -39,4 +74,4 @@ my_list.Print()
 my_list.Clear()
 
 # print the empty list
-my_list.Print()
+my_list.Print()"""
