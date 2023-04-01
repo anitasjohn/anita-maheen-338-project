@@ -1,9 +1,11 @@
 from node import Node
-
 class SinglyLinkedList:
-    
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.sorted = True
+        self.length = 0
         
-    
     def insert_head(self, node):
         node.next = self.head
         self.head = node
@@ -45,7 +47,7 @@ class SinglyLinkedList:
         # insert node at proper position
         current = self.head
         prev = None
-        while current is not None and current.value < node.value:
+        while current is not None and current.data < node.data:
             prev = current
             current = current.next
 
@@ -60,18 +62,20 @@ class SinglyLinkedList:
     def isSorted(self):
         current = self.head
         while current is not None and current.next is not None:
-            if current.value > current.next.value:
+            if current.data > current.next.data:
                 return False
             current = current.next
         return True
 
-    def Search(self, node):
-        curr_node = self.head
-        while curr_node is not None:
-            if curr_node.data == node:
-                return curr_node
-            curr_node = curr_node.next
+    def Search(self, value):
+        current = self.head
+        while current is not None:
+            if current.value == value:
+                return current
+            current = current.next
         return None
+
+
 
     def DeleteHead(self):
         if self.head is None:
@@ -85,7 +89,7 @@ class SinglyLinkedList:
         if self.head == None:
             return None
         elif self.head == self.tail:
-            value = self.tail.value
+            value = self.tail.data
             self.head = None
             self.tail = None
             return value
@@ -93,7 +97,7 @@ class SinglyLinkedList:
             current_node = self.head
             while current_node.next != self.tail:
                 current_node = current_node.next
-            value = self.tail.value
+            value = self.tail.data
             self.tail = current_node
             self.tail.next = None
             return value
@@ -106,24 +110,14 @@ class SinglyLinkedList:
             return node.value
         else:
             current_node = self.head
-            while current_node.next != node:
-                current_node = current_node.next
-            if current_node.next == None:
-                return None
-            else:
-                current_node.next = node.next
-                return node.value
-    
-    def Sort(self):
-        if self.head == None:
-            return
-        sorted_list = None
-        current_node = self.head
-        while current_node != None:
-            next_node = current_node.next
-            sorted_list = self.SortedInsert(current_node, sorted_list)
-            current_node = next_node
-        self.head = sorted_list
+        while current_node.next != node:
+            current_node = current_node.next
+        if current_node.next == None:
+            return None
+        else:
+            current_node.next = node.next
+            return node.value
+
 
     def Clear(self):
         """Deletes the whole list."""
