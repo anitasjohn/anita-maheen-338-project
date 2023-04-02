@@ -1,4 +1,119 @@
 from node import DNode
+'''from doublyCLL import CircularDoublyLinkedList
+
+# test insert_head method
+dll = CircularDoublyLinkedList()
+node1 = DNode(1)
+node2 = DNode(2)
+dll.insert_head(node1)
+dll.insert_head(node2)
+print(dll.head.value)
+print(dll.tail.value)
+print(dll.head.next.value)
+print(dll.tail.previous.value)
+assert dll.head == node2
+assert dll.tail == node1
+assert dll.head.next == node1
+assert dll.tail.previous == node2
+
+# test insert_tail method
+dll = CircularDoublyLinkedList()
+node1 = DNode(1)
+node2 = DNode(2)
+dll.insert_tail(node1)
+dll.insert_tail(node2)
+print(dll.head.value)
+print(dll.tail.value)
+print(dll.head.next.value)
+print(dll.tail.previous.value)
+assert dll.head == node1
+assert dll.tail == node2
+assert dll.head.next == node2
+assert dll.tail.previous == node1
+
+# test insert method
+dll = CircularDoublyLinkedList()
+node1 = DNode(1)
+node2 = DNode(2)
+node3 = DNode(3)
+dll.insert_head(node1)
+dll.insert_tail(node3)
+dll.insert(node2, 1)
+print(dll.head.value)
+print(dll.tail.value)
+print(dll.head.next.value)
+print(dll.tail.previous.value)
+print(dll.head.next.next.value)
+print(dll.tail.previous.previous.value)
+assert dll.head == node1
+assert dll.tail == node3
+assert dll.head.next == node2
+assert dll.tail.previous == node2
+assert dll.head.next.next == node3
+assert dll.tail.previous.previous == node1
+
+# test DeleteHead method
+dll = CircularDoublyLinkedList()
+node1 = DNode(1)
+node2 = DNode(2)
+dll.insert_head(node1)
+dll.insert_tail(node2)
+dll.DeleteHead()
+print(dll.head.value)
+print(dll.tail.value)
+print(dll.head.previous.value)
+print(dll.tail.next.value)
+assert dll.head == node2
+assert dll.tail == node2
+assert dll.head.previous == node2
+assert dll.tail.next == node2
+
+# test DeleteTail method
+dll = CircularDoublyLinkedList()
+node1 = DNode(1)
+node2 = DNode(2)
+dll.insert_head(node1)
+dll.insert_tail(node2)
+dll.DeleteTail()
+print(dll.head.value)
+print(dll.tail.value)
+print(dll.head.previous.value)
+print(dll.tail.next.value)
+assert dll.head == node1
+assert dll.tail == node1
+assert dll.head.previous == node1
+assert dll.tail.next == node1
+
+# test Delete method
+dll = CircularDoublyLinkedList()
+node1 = DNode(1)
+node2 = DNode(2)
+node3 = DNode(3)
+dll.insert_head(node1)
+dll.insert_tail(node3)
+dll.insert(node2, 1)
+dll.Delete(node2)
+print(dll.head.value)
+print(dll.tail.value)
+print(dll.head.next.value)
+print(dll.tail.previous.value)
+assert dll.head == node1
+assert dll.tail == node3
+assert dll.head.next == node3
+assert dll.tail.previous == node1'''
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 '''from singlyCLL import CircularSinglyLinkedList
 
