@@ -1,4 +1,32 @@
 from node import DNode
+from LLStack import Stack
+stack = Stack()
+    
+    # push some values onto the stack
+stack.push(DNode(1))
+stack.push(DNode(2))
+stack.push(DNode(3))
+    
+    # print the stack
+stack.Print()
+    
+    # pop a value off the stack
+popped_value = stack.pop()
+print(f'Popped value: {popped_value}')
+    
+    # print the stack again
+stack.Print()
+    
+    # peek at the top value on the stack
+top_value = stack.peek()
+print(f'Top value: {top_value}')
+    
+    # clear the stack
+stack.Clear()
+    
+    # print the stack after clearing it
+stack.Print()
+
 '''from doublyCLL import CircularDoublyLinkedList
 
 # test insert_head method

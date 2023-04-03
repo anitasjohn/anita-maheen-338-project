@@ -1,40 +1,32 @@
+
 from node import Node
 from singlyLL import SinglyLinkedList
+
 class Stack(SinglyLinkedList):
     def __init__(self):
         super().__init__()
 
-    # Override methods from SinglyLinkedList that do not apply to Stacks
+    # override methods from SinglyLinkedList that do not apply to stack behavior
     def insert_tail(self, node):
         pass
-    
+
     def insert(self, node, position):
         pass
-    
-    def SortedInsert(self, node):
+
+    def sortedInsert(self, node):
         pass
-    
-    def isSorted(self):
-        return True
-    
-    def Search(self, value):
-        pass
-    
-    # Add new methods specific to Stack functionality
+
+    # define wrappers with proper naming conventions for stack functionality
     def push(self, node):
         super().insert_head(node)
-    
+
     def pop(self):
-        if self.head is None:
-            return None
-        else:
-            value = self.head.value
-            self.head = self.head.next
-            self.length -= 1
-            return value
-    
+        value = self.head.value
+        self.DeleteHead()
+        return value
+
     def peek(self):
-        if self.head is None:
-            return None
-        else:
-            return self.head.value
+        return self.head.value
+
+    def is_empty(self):
+        return self.length == 0
