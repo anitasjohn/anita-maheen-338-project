@@ -129,6 +129,8 @@ class BST:
                 if node.get_right() is not None:
                     q.put(node.get_right())
             print(*level_nodes, end=" ")
+            print()
+
 
 
     def get_successor(self, node):

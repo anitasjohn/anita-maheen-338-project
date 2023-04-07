@@ -1,6 +1,8 @@
 from BST import BST
 from TNode import TNode
 
+from BST import BST
+
 # Test default constructor
 tree1 = BST()
 print(tree1.get_root())  # Output: None
@@ -41,5 +43,3 @@ tree3.print_in_order()  # Output: 5 10 15 25 30
 
 # Test printBF method
 tree3.print_bf()  # Output: 10 5 15 30 25
-
-
