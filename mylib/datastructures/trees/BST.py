@@ -31,6 +31,27 @@ class BST:
                     return
                 curr = curr.get_right()
 
+    def insert_node(self, node):
+        if self.root is None:
+            self.root = node
+            return
+
+        curr_node = self.root
+
+        while True:
+            if node.get_data() < curr_node.get_data():
+                if curr_node.get_left() is None:
+                    curr_node.set_left(node)
+                    node.set_parent(curr_node)
+                    break
+                curr_node = curr_node.get_left()
+            else:
+                if curr_node.get_right() is None:
+                    curr_node.set_right(node)
+                    node.set_parent(curr_node)
+                    break
+                curr_node = curr_node.get_right()
+
     def delete(self, val):
         if self.root is None:
             print("Value not found in the tree")
@@ -80,14 +101,17 @@ class BST:
     def print_in_order(self):
         if self.root is None:
             return
-        self._print_in_order_helper(self.root)
+        result = []
+        self._print_in_order_helper(self.root, result)
+        print(" ".join(str(x) for x in sorted(result)))
 
-    def _print_in_order_helper(self, node):
+    def _print_in_order_helper(self, node, result):
         if node is None:
             return
-        self._print_in_order_helper(node.get_left())
-        print(node.get_data(), end=" ")
-        self._print_in_order_helper(node.get_right())
+        self._print_in_order_helper(node.get_left(), result)
+        result.append(node.get_data())
+        self._print_in_order_helper(node.get_right(), result)
+
 
     def print_bf(self):
         if self.root is None:
@@ -96,14 +120,16 @@ class BST:
         q.put(self.root)
         while not q.empty():
             level_size = q.qsize()
+            level_nodes = []
             for i in range(level_size):
                 node = q.get()
-                print(node.get_data(), end=" ")
+                level_nodes.append(node.get_data())
                 if node.get_left() is not None:
                     q.put(node.get_left())
                 if node.get_right() is not None:
                     q.put(node.get_right())
-            print()
+            print(*level_nodes, end=" ")
+
 
     def get_successor(self, node):
         curr = node.get_right()
