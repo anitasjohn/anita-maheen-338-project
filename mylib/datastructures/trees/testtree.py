@@ -42,4 +42,4 @@ print(node6)  # Output: None
 tree3.print_in_order()  # Output: 5 10 15 25 30
 
 # Test printBF method
-tree3.print_bf()  # Output: 10 5 15 30 25
+tree3.print_bf()
