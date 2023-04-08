@@ -1,5 +1,7 @@
-from node import DNode
-'''from LLStack import Stack
+import sys
+sys.path.append("C:/Users/anita/OneDrive/Documents/GitHub/anita-maheen-338-project/datastructures")
+from nodes.DNode import DNode
+from LLStack import Stack
 stack = Stack()
     
     # push some values onto the stack
@@ -25,7 +27,7 @@ print(f'Top value: {top_value}')
 stack.Clear()
     
     # print the stack after clearing it
-stack.Print()'''
+stack.Print()
 
 '''from doublyCLL import CircularDoublyLinkedList
 
