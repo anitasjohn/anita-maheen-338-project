@@ -1,12 +1,13 @@
 from TNode import TNode
 from BST import BST
 
-class AVL():
+class AVL(BST):
     def __init__(self, root=None):
         super().__init__(root)
 
     def __init__(self, val):
-        super().__init__(TNode(val))
+        super().insert(val)
+        self.balance_tree()
 
     def __init__(self, obj):
         self.root = obj
@@ -17,6 +18,9 @@ class AVL():
         super().set_root(root)
         if self.root.get_left() is not None or self.root.get_right() is not None:
             self.balance_tree()
+
+    def get_root(self):
+        return self.root
 
     def insert(self, val):
         super().insert(val)

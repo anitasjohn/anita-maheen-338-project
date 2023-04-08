@@ -31,9 +31,13 @@ tree3.delete(20)
 node6 = tree3.search(20)
 print(node6)  # Output: None
 
+print("In order:")
 tree3.print_in_order()  # Output: 5 10 15 25 30
 
+print("Breadth-first, with each level on a new line:")
 tree3.print_bf()
+
+
 
 ## for avl specifically
 
