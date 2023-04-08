@@ -1,6 +1,7 @@
-import sys
-sys.path.append("C:/Users/anita/OneDrive/Documents/GitHub/anita-maheen-338-project/datastructures")
-from nodes.DNode import DNode
+
+
+from ..nodes import DNode
+
 from doublyLL import DoublyLinkedList
 
 class CircularDoublyLinkedList(DoublyLinkedList):
