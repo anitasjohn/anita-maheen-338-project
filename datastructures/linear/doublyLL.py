@@ -1,4 +1,6 @@
-from node import DNode
+import sys
+sys.path.append("C:/Users/anita/OneDrive/Documents/GitHub/anita-maheen-338-project/datastructures")
+from nodes.DNode import DNode
 from singlyLL import SinglyLinkedList
 
 class DoublyLinkedList(SinglyLinkedList):

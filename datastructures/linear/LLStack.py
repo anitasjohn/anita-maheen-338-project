@@ -1,5 +1,7 @@
 
-from node import Node
+import sys
+sys.path.append("C:/Users/anita/OneDrive/Documents/GitHub/anita-maheen-338-project/datastructures")
+from nodes.SNode import SNode
 from singlyLL import SinglyLinkedList
 
 class Stack(SinglyLinkedList):
