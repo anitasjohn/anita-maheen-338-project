@@ -1,5 +1,5 @@
 from node import DNode
-from LLStack import Stack
+'''from LLStack import Stack
 stack = Stack()
     
     # push some values onto the stack
@@ -25,7 +25,7 @@ print(f'Top value: {top_value}')
 stack.Clear()
     
     # print the stack after clearing it
-stack.Print()
+stack.Print()'''
 
 '''from doublyCLL import CircularDoublyLinkedList
 
