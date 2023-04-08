@@ -1,7 +1,12 @@
+import os
+import sys
 
+# get the path to the nodes directory
+nodes_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nodes'))
+sys.path.append(nodes_path)
 
-from ..nodes import DNode
-
+# import SNode from the nodes directory
+from DNode import DNode
 from doublyLL import DoublyLinkedList
 
 class CircularDoublyLinkedList(DoublyLinkedList):

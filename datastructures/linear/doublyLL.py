@@ -1,6 +1,12 @@
+import os
 import sys
-sys.path.append("C:/Users/anita/OneDrive/Documents/GitHub/anita-maheen-338-project/datastructures")
-from nodes.DNode import DNode
+
+# get the path to the nodes directory
+nodes_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nodes'))
+sys.path.append(nodes_path)
+
+# import SNode from the nodes directory
+from DNode import DNode
 from singlyLL import SinglyLinkedList
 
 class DoublyLinkedList(SinglyLinkedList):

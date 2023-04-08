@@ -1,7 +1,13 @@
 
+import os
 import sys
-sys.path.append("C:/Users/anita/OneDrive/Documents/GitHub/anita-maheen-338-project/datastructures")
-from nodes.SNode import SNode
+
+# get the path to the nodes directory
+nodes_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nodes'))
+sys.path.append(nodes_path)
+
+# import SNode from the nodes directory
+from SNode import SNode
 
 
 from singlyLL import SinglyLinkedList
