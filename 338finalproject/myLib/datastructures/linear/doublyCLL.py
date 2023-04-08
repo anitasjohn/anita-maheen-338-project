@@ -1,12 +1,8 @@
-import os
-import sys
+from myLib.datastructures.nodes import DNode
 
-# get the path to the nodes directory
-nodes_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nodes'))
-sys.path.append(nodes_path)
 
-# import SNode from the nodes directory
-from DNode import DNode
+
+
 from doublyLL import DoublyLinkedList
 
 class CircularDoublyLinkedList(DoublyLinkedList):
