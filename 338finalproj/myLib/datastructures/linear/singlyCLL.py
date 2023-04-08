@@ -1,4 +1,4 @@
-
+'''
 import os
 import sys
 
@@ -7,7 +7,8 @@ nodes_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'node
 sys.path.append(nodes_path)
 
 # import SNode from the nodes directory
-from DNode import DNode
+from DNode import DNode'''
+from myLib.datastructures.nodes import SNode
 
 
 

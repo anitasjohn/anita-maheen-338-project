@@ -1,4 +1,4 @@
-import os
+'''import os
 import sys
 
 # get the path to the nodes directory
@@ -7,11 +7,11 @@ sys.path.append(nodes_path)
 
 # import SNode from the nodes directory
 from SNode import SNode
+'''
 
 
 
-
-
+from myLib.datastructures.nodes import DNode
 
 
 
