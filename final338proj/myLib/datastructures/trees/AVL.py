@@ -1,18 +1,22 @@
 from TNode import TNode
 from BST import BST
 
-
-class AVL(BST):
+class AVL():
     def __init__(self, root=None):
         super().__init__(root)
 
-    def get_root(self):
-        return self.root
+    def __init__(self, val):
+        super().__init__(TNode(val))
+
+    def __init__(self, obj):
+        self.root = obj
+        if self.root.get_left() is not None or self.root.get_right() is not None:
+            self.balance_tree()
 
     def set_root(self, root):
-        self.root = root
-        if root.get_left() is not None or root.get_right() is not None:
-            self._rebalance_tree(root)
+        super().set_root(root)
+        if self.root.get_left() is not None or self.root.get_right() is not None:
+            self.balance_tree()
 
     def insert(self, val):
         super().insert(val)
@@ -22,101 +26,87 @@ class AVL(BST):
         super().insert_node(node)
         self.balance_tree()
 
-    def delete(self, val):
-        node = self.search(val)
-        if node is None:
-            print("Value not found in the tree")
-            return
-        parent = node.get_parent()
-
-        # Case 1: Node has no children
-        if node.get_left() is None and node.get_right() is None:
-            if parent is None:
-                self.set_root(None)
-            elif node == parent.get_left():
-                parent.set_left(None)
-            else:
-                parent.set_right(None)
-        # Case 2: Node has one child
-        elif node.get_left() is None or node.get_right() is None:
-            child = node.get_left() or node.get_right()
-            if parent is None:
-                self.set_root(child)
-                child.set_parent(None)
-            elif node == parent.get_left():
-                parent.set_left(child)
-                child.set_parent(parent)
-            else:
-                parent.set_right(child)
-                child.set_parent(parent)
-        # Case 3: Node has two children
-        else:
-            successor = self.get_successor(node)
-            node.set_data(successor.get_data())
-            self.delete(successor.get_data())
-
-        self.balance_tree()
-
-    def balance_factor(self, node):
-        left_height = node.get_left().height() if node.get_left() else -1
-        right_height = node.get_right().height() if node.get_right() else -1
-        return right_height - left_height
-
     def balance_tree(self):
-        node_stack = []
-        curr = self.get_root()
-        while True:
-            if curr:
-                node_stack.append(curr)
-                curr = curr.get_left()
-            elif node_stack:
-                curr = node_stack.pop()
-                balance_factor = self.balance_factor(curr)
-                if balance_factor < -1:
-                    if self.balance_factor(curr.get_left()) > 0:
-                        self.rotate_left(curr.get_left())
-                    self.rotate_right(curr)
-                elif balance_factor > 1:
-                    if self.balance_factor(curr.get_right()) < 0:
-                        self.rotate_right(curr.get_right())
-                    self.rotate_left(curr)
-                curr = curr.get_right()
-            else:
-                break
+        if self.root is None:
+            return
+        if self.root.get_left() is not None:
+            self.balance_tree_helper(self.root.get_left())
+        if self.root.get_right() is not None:
+            self.balance_tree_helper(self.root.get_right())
+        self.update_balance(self.root)
+        self.rotate_tree(self.root)
 
-    def rotate_right(self, node):
-        pivot = node.get_left()
-        if node == self.get_root():
-            self.set_root(pivot)
-            pivot.set_parent(None)
-        else:
-            parent = node.get_parent()
-            if node == parent.get_left():
-                parent.set_left(pivot)
-            else:
-                parent.set_right(pivot)
-            pivot.set_parent(parent)
-        node.set_left(pivot.get_right())
-        if node.get_left():
-            node.get_left().set_parent(node)
-        pivot.set_right(node)
-        node.set_parent(pivot)
+    def balance_tree_helper(self, node):
+        if node is None:
+            return
+        if node.get_left() is not None:
+            self.balance_tree_helper(node.get_left())
+        if node.get_right() is not None:
+            self.balance_tree_helper(node.get_right())
+        self.update_balance(node)
+        self.rotate_tree(node)
+
+    def update_balance(self, node):
+        left_height = self.get_height(node.get_left())
+        right_height = self.get_height(node.get_right())
+        balance = left_height - right_height
+        node.set_balance(balance)
+
+    def rotate_tree(self, node):
+        if node.get_balance() > 1:
+            if node.get_left().get_balance() < 0:
+                self.rotate_left(node.get_left())
+            self.rotate_right(node)
+        elif node.get_balance() < -1:
+            if node.get_right().get_balance() > 0:
+                self.rotate_right(node.get_right())
+            self.rotate_left(node)
 
     def rotate_left(self, node):
-        pivot = node.get_right()
-        if node == self.get_root():
-            self.set_root(pivot)
-            pivot.set_parent(None)
+        right = node.get_right()
+        parent = node.get_parent()
+        if parent is None:
+            self.root = right
+            right.set_parent(None)
+        elif node == parent.get_left():
+            parent.set_left(right)
+            right.set_parent(parent)
         else:
-            parent = node.get_parent()
-            if node == parent.get_left():
-                parent.set_left(pivot)
-            else:
-                parent.set_right(pivot)
-            pivot.set_parent(parent)
-        node.set_right(pivot.get_left())
-        if node.get_right():
-            node.get_right().set_parent(node)
-        pivot.set_left(node)
-        node.set_parent(pivot)
+            parent.set_right(right)
+            right.set_parent(parent)
+        node.set_right(right.get_left())
+        if right.get_left() is not None:
+            right.get_left().set_parent(node)
+        right.set_left(node)
+        node.set_parent(right)
+        self.update_balance(node)
+        self.update_balance(right)
+
+    def rotate_right(self, node):
+        left = node.get_left()
+        parent = node.get_parent()
+        if parent is None:
+            self.root = left
+            left.set_parent(None)
+        elif node == parent.get_left():
+            parent.set_left(left)
+            left.set_parent(parent)
+        else:
+            parent.set_right(left)
+            left.set_parent(parent)
+        node.set_left(left.get_right())
+        if left.get_right() is not None:
+            left.get_right().set_parent(node)
+        left.set_right(node)
+        node.set_parent(left)
+        self.update_balance(node)
+        self.update_balance(left)
+
+    def get_height(self, node):
+        if node is None:
+            return -1
+        return 1 + max(self.get_height(node.get_left()), self.get_height(node.get_right()))
+    
+    def delete(self, val):
+        super().delete(val)
 
