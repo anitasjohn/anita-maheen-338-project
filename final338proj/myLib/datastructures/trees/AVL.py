@@ -1,7 +1,7 @@
 from TNode import TNode
 from BST import BST
 
-class AVL(BST):
+class AVL():
     def __init__(self, root=None):
         super().__init__(root)
 
