@@ -68,7 +68,7 @@ class SinglyLinkedList:
         # insert node at proper position
         current = self.head
         prev = None
-        while current is not None and current.data < node.data:
+        while current is not None and current.value < node.value:
             prev = current
             current = current.next
 
@@ -91,7 +91,7 @@ class SinglyLinkedList:
     def Search(self, value):
         current = self.head
         while current is not None:
-            if current.value == value:
+            if current.value == value: # Change `data` to `value`
                 return current
             current = current.next
         return None
