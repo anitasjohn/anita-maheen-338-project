@@ -1,6 +1,4 @@
-import sys
-sys.path.append("C:/Users/anita/OneDrive/Documents/GitHub/anita-maheen-338-project/datastructures")
-from nodes.DNode import DNode
+from myLib.datastructures.nodes import SNode
 from LLStack import Stack
 stack = Stack()
     
