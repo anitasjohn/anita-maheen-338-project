@@ -1,5 +1,3 @@
-
-
 from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 
 

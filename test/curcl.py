@@ -1,5 +1,11 @@
 from myLib.datastructures.linear.singlyCLL import CircularSinglyLinkedList
 
+from myLib.datastructures.nodes.SNode import SNode
+
+node1 = SNode(1)
+node2 = SNode(2)
+node3 = SNode(3)
+node4 = SNode(4)
 # Test creation of an empty circular singly linked list
 csll = CircularSinglyLinkedList()
 assert csll.length == 0 # Expected length is 0

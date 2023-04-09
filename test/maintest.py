@@ -1,6 +1,7 @@
- 
+from myLib.datastructures.linear.LLStack import Stack
 from myLib.datastructures.linear.singlyLL import SinglyLinkedList
-from myLib.datastructures.linear.singlyCLL import CircularSinglyLinkedList
+#from myLib.datastructures.linear.singlyCLL import CircularSinglyLinkedList
+
 from myLib.datastructures.nodes.SNode import SNode
 import myLib.datastructures.linear.singlyLL
 ##from myLib.datastructures.nodes.DNode import DNode
@@ -202,7 +203,30 @@ def main():
 
     print('SINGLYLL TESTING DONE')
 
+    # create a new stack
+    stack = Stack()
 
+    # push some nodes onto the stack
+    stack.push(SNode(1))
+    stack.push(SNode(2))
+    stack.push(SNode(3))
+
+    # test the pop method
+    assert stack.pop() == 3
+    assert stack.pop() == 2
+    assert stack.pop() == 1
+
+    # test the peek method
+    stack.push(SNode(4))
+    assert stack.peek() == 4
+    assert stack.pop() == 4
+
+    # test the is_empty method
+    assert stack.is_empty() == True
+    stack.push(SNode(5))
+    assert stack.is_empty() == False
+
+'''
     node1 = SNode(1)
     node2 = SNode(2)
     node3 = SNode(3)
@@ -251,7 +275,7 @@ def main():
     assert csll.tail == node3 # Expected tail node is node3
 
 
-
+'''
 
 
 if __name__ == '__main__':

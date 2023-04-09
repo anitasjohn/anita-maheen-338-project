@@ -8,10 +8,10 @@ sys.path.append(nodes_path)
 
 # import SNode from the nodes directory
 from SNode import SNode'''
-from myLib.datastructures.nodes import SNode
 
 
-from singlyLL import SinglyLinkedList
+
+from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 
 class Stack(SinglyLinkedList):
     def __init__(self):
