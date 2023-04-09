@@ -72,7 +72,7 @@ class SinglyLinkedList:
     def isSorted(self):
         current = self.head
         while current is not None and current.next is not None:
-            if current.data > current.next.data:
+            if current.value > current.next.value:
                 return False
             current = current.next
         return True
@@ -99,7 +99,7 @@ class SinglyLinkedList:
         if self.head == None:
             return None
         elif self.head == self.tail:
-            value = self.tail.data
+            value = self.tail.value
             self.head = None
             self.tail = None
             return value
@@ -107,7 +107,7 @@ class SinglyLinkedList:
             current_node = self.head
             while current_node.next != self.tail:
                 current_node = current_node.next
-            value = self.tail.data
+            value = self.tail.value
             self.tail = current_node
             self.tail.next = None
             return value
