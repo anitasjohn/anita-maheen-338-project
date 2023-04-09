@@ -9,17 +9,6 @@ sys.path.append(nodes_path)
 from SNode import SNode
 '''
 
-
-
-
-
-
-
-
-
-
-
-
 class SinglyLinkedList:
     def __init__(self):
         self.head = None
