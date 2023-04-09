@@ -68,19 +68,23 @@ class BST:
                 parent.set_left(None)
             else:
                 parent.set_right(None)
-            del node # remove node from the tree
+            result = self._print_in_order_helper(self.root, [])
+            if node.get_data() in result:
+                result.remove(node.get_data())
+            del node
         elif node.get_left() is None or node.get_right() is None:
             child = node.get_left() or node.get_right()
+            child.set_parent(parent) # update child's parent pointer
             if parent is None:
                 self.root = child
-                child.set_parent(None)
             elif node == parent.get_left():
                 parent.set_left(child)
-                child.set_parent(parent)
             else:
                 parent.set_right(child)
-                child.set_parent(parent)
-            del node # remove node from the tree
+            result = self._print_in_order_helper(self.root, [])
+            if node.get_data() in result:
+                result.remove(node.get_data())
+            del node
         else:
             succ = self.get_successor(node)
             node.set_data(succ.get_data())
@@ -107,10 +111,12 @@ class BST:
 
     def _print_in_order_helper(self, node, result):
         if node is None:
-            return
-        self._print_in_order_helper(node.get_left(), result)
-        result.append(node.get_data())
-        self._print_in_order_helper(node.get_right(), result)
+            return result
+        result = self._print_in_order_helper(node.get_left(), result)
+        if node.get_data() is not None:
+            result.append(node.get_data())
+        result = self._print_in_order_helper(node.get_right(), result)
+        return result
 
 
     def print_bf(self):
