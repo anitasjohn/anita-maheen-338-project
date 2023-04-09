@@ -1,6 +1,6 @@
  
-from datastructures.linear.singlyLL import SinglyLinkedList
-from datastructures.nodes.SNode import SNode
+from myLib.datastructures.linear.singlyLL import SinglyLinkedList
+from myLib.datastructures.nodes.SNode import SNode
 
 # create a new singly linked list
 sll = SinglyLinkedList()

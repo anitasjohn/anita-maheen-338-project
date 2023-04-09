@@ -8,8 +8,4 @@ setup(name='myLib',
       packages = find_packages(),
       install_requires=[],
       
-      
-      
-      
-      
-      )
+)
