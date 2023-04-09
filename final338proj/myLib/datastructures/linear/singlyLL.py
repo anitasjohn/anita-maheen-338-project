@@ -16,12 +16,15 @@ class SinglyLinkedList:
         self.sorted = True
         self.length = 0
         
+        
     def insert_head(self, node):
         node.next = self.head
         self.head = node
         if self.tail is None:
             self.tail = node
         self.length += 1
+        self.sorted = False
+
     
     def insert_tail(self, node):
         if self.tail is None:
@@ -31,6 +34,7 @@ class SinglyLinkedList:
             self.tail.next = node
             self.tail = node
         self.length += 1
+        self.sorted = False
 
     def insert(self, node, position):
         if position == 0:
@@ -44,17 +48,16 @@ class SinglyLinkedList:
             node.next = curr.next
             curr.next = node
             self.length += 1
+            self.sorted = False
 
     def SortedInsert(self, node):
-        if self.head is None:  # if list is empty, insert at head
+        if self.head is None:
             self.insert_head(node)
             return
 
-        # check if list is sorted
         if not self.sorted:
-            self.Sort()  # if not sorted, sort the list before inserting
+            self.Sort()
 
-        # insert node at proper position
         current = self.head
         prev = None
         while current is not None and current.value < node.value:
@@ -68,14 +71,19 @@ class SinglyLinkedList:
             prev.next = node
 
         self.length += 1
+        self.sorted = self.isSorted()
+
+
     
     def isSorted(self):
         current = self.head
+        is_sorted = True
         while current is not None and current.next is not None:
             if current.value > current.next.value:
-                return False
+                is_sorted = False
             current = current.next
-        return True
+        return is_sorted
+
 
     def Search(self, value):
         current = self.head
@@ -96,36 +104,45 @@ class SinglyLinkedList:
         self.length -= 1
     
     def DeleteTail(self):
-        if self.head == None:
+        if self.head is None:
             return None
         elif self.head == self.tail:
-            value = self.tail.value
+            value = self.head.value
             self.head = None
             self.tail = None
+            self.length -= 1
             return value
         else:
-            current_node = self.head
-            while current_node.next != self.tail:
-                current_node = current_node.next
-            value = self.tail.value
-            self.tail = current_node
-            self.tail.next = None
-            return value
+            current = self.head
+        while current.next is not self.tail:
+            current = current.next
+        value = self.tail.value
+        self.tail = current
+        self.tail.next = None
+        self.length -= 1
+        return value
+
     
     def Delete(self, node):
-        if self.head == None:
+        if self.head is None:
             return None
         elif self.head == node:
             self.head = node.next
+            if self.tail == node:
+                self.tail = None
+            self.length -= 1
             return node.value
         else:
             current_node = self.head
-        while current_node.next != node:
-            current_node = current_node.next
-        if current_node.next == None:
-            return None
-        else:
-            current_node.next = node.next
+            while current_node is not None and current_node.next != node:
+                current_node = current_node.next
+            if current_node is None:
+                return None
+            else:
+                current_node.next = node.next
+            if self.tail == node:
+                self.tail = current_node
+            self.length -= 1
             return node.value
 
 
@@ -137,12 +154,12 @@ class SinglyLinkedList:
         self.length = 0
 
     def Print(self):
-        """Prints the list information on the screen."""
-        print("List length:", self.length)
-        print("Sorted status:", self.sorted)
-        print("List content:")
-        current = self.head
-        while current:
-            print(current.value)
-            current = current.next
+        if self.head is None:
+            print("List is empty")
+        else:
+            current = self.head
+            while current is not None:
+                print(current.value, end=" -> ")
+                current = current.next
+            print("None")
 
