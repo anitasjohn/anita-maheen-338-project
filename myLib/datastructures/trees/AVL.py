@@ -1,11 +1,13 @@
 from TNode import TNode
 from BST import BST
+from queue import Queue
 
 class AVL(BST):
     def __init__(self, root=None):
         super().__init__(root)
 
     def __init__(self, val):
+        ## super().__init__(TNode(val))
         super().insert(val)
         self.balance_tree()
 

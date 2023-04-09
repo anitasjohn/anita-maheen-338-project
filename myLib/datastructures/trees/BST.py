@@ -61,7 +61,6 @@ class BST:
             print("Value not found in the tree")
             return
         parent = node.get_parent()
-        # Case 1: Node has no children
         if node.get_left() is None and node.get_right() is None:
             if parent is None:
                 self.root = None
@@ -69,7 +68,6 @@ class BST:
                 parent.set_left(None)
             else:
                 parent.set_right(None)
-        # Case 2: Node has one child
         elif node.get_left() is None or node.get_right() is None:
             child = node.get_left() or node.get_right()
             if parent is None:
@@ -81,7 +79,6 @@ class BST:
             else:
                 parent.set_right(child)
                 child.set_parent(parent)
-        # Case 3: Node has two children
         else:
             succ = self.get_successor(node)
             node.set_data(succ.get_data())
@@ -130,8 +127,6 @@ class BST:
                     q.put(node.get_right())
             print(*level_nodes, end=" ")
             print()
-
-
 
     def get_successor(self, node):
         curr = node.get_right()
