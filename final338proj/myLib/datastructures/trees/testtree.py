@@ -38,12 +38,10 @@ print("Breadth-first, with each level on a new line:")
 tree3.print_bf()
 
 
+## for avl tree specifically
 
-## for avl specifically
+avl_tree = AVL(10)
 
-avl_tree = AVL()
-
-avl_tree.insert(10)
 avl_tree.insert(20)
 avl_tree.insert(30)
 avl_tree.insert(40)
