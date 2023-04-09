@@ -68,6 +68,7 @@ class BST:
                 parent.set_left(None)
             else:
                 parent.set_right(None)
+            del node # remove node from the tree
         elif node.get_left() is None or node.get_right() is None:
             child = node.get_left() or node.get_right()
             if parent is None:
@@ -79,10 +80,12 @@ class BST:
             else:
                 parent.set_right(child)
                 child.set_parent(parent)
+            del node # remove node from the tree
         else:
             succ = self.get_successor(node)
             node.set_data(succ.get_data())
             self.delete(succ.get_data())
+
 
     def search(self, val):
         curr = self.root

@@ -37,6 +37,39 @@ tree3.print_in_order()  # Output: 5 10 15 25 30
 print("Breadth-first, with each level on a new line:")
 tree3.print_bf()
 
+##avl = AVL()
+##print("Root node of default AVL tree:", avl.root)
+
+"""
+
+avl = AVL(50)
+print("Root node of AVL tree with root value 50:", avl.root.get_data())
+
+t = TNode(50)
+t.set_left(TNode(30))
+t.set_right(TNode(80))
+avl = AVL(t)
+print("Root node of balanced AVL tree from passed tree:", avl.root.get_data())
+
+avl.insert(40)
+avl.insert(70)
+avl.insert(60)
+avl.insert(20)
+avl.insert(10)
+avl.insert(90)
+print("In-order traversal of AVL tree after insertions:")
+avl.print_in_order()
+
+avl.delete(20)
+avl.delete(50)
+print("In-order traversal of AVL tree after deletions:")
+avl.print_in_order()
+
+node = avl.search(60)
+print("Node with value 60:", node.get_data())
+
+print("Balances of nodes in AVL tree:")
+avl.print_bf()
 
 ## for avl tree specifically
 
@@ -61,3 +94,5 @@ avl_tree.print_in_order()
 
 print("\nBreadth-first traversal of AVL tree after deleting 30:")
 avl_tree.print_bf()
+
+"""
