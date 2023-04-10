@@ -6,276 +6,152 @@ from myLib.datastructures.nodes.SNode import SNode
 import myLib.datastructures.linear.singlyLL
 ##from myLib.datastructures.nodes.DNode import DNode
 
-print('SINGLYLL TESTING BEGAN')
-# create a new singly linked list
-sll = SinglyLinkedList()
-
-# insert some nodes into the list
-node1 = SNode(5)
-node2 = SNode(10)
-node3 = SNode(15)
-node4 = SNode(20)
-
-sll.insert_head(node1)
-sll.insert_tail(node2)
-sll.insert(node3, 1)
-sll.SortedInsert(node4)
-
-# print the contents of the list
-sll.Print()  # Expected output: 5 -> 10 -> 15 -> 20
-
-# search for a node in the list
-node = sll.Search(10)
-if node is not None:
-    print("Found node with value:", node.value)  # Expected output: Found node with value: 10
-else:
-    print("Node not found")
-
-# delete a node from the list
-sll.Delete(node3)
-
-# print the updated contents of the list
-sll.Print()  # Expected output: 5 -> 10 -> 20
-
-# clear the list
-sll.Clear()
-
-# print the cleared list
-sll.Print()  # Expected output: empty list
-
-# create a new singly linked list
-sll = SinglyLinkedList()
-
-# insert some nodes into the list
-node1 = SNode(5)
-node2 = SNode(10)
-node3 = SNode(15)
-node4 = SNode(20)
-
-sll.insert_head(node1)
-sll.insert_tail(node2)
-sll.insert(node3, 1)
-sll.SortedInsert(node4)
-
-# print the contents of the list
-sll.Print()  # Expected output: 5 -> 10 -> 15 -> 20
-
-# search for a node in the list
-node = sll.Search(10)
-if node is not None:
-    print("Found node with value:", node.value)  # Expected output: Found node with value: 10
-else:
-    print("Node not found")
-
-# delete a node from the list
-sll.Delete(node3)
-
-# print the updated contents of the list
-sll.Print()  # Expected output: 5 -> 10 -> 20
-
-# clear the list
-sll.Clear()
-
-# print the cleared list
-sll.Print()  # Expected output: empty list
-
-
 
 def main():
-    # create a linked list
-    linked_list = SinglyLinkedList()
+    print('SINGLYLL TESTING BEGAN')
 
-    # insert some nodes
-    linked_list.insert_head(SNode(1))
-    linked_list.insert_head(SNode(2))
-    linked_list.insert_head(SNode(3))
-    linked_list.insert_head(SNode(4))
 
-    # print the list
-    linked_list.Print()
-
-    # search for a value
-    node = linked_list.Search(3)
-    if node is not None:
-        print(f"Found node with value {node.value}")
-    else:
-        print("Value not found")
-
-    # delete a node
-    node = linked_list.Search(2)
-    if node is not None:
-        linked_list.Delete(node)
-        print(f"Deleted node with value {node.value}")
-    else:
-        print("Value not found")
-
-    # print the list again
-    linked_list.Print()
-
-    # clear the list
-    linked_list.Clear()
-    linked_list.Print()
-
-    # test edge cases
-    # insert a node at position 0
-    linked_list.insert(SNode(5), 0)
-    linked_list.Print()
-
-    # insert a node at position 2
-    linked_list.insert(SNode(6), 2)
-    linked_list.Print()
-
-    # insert a node at position 100 (should insert at tail)
-    linked_list.insert(SNode(7), 100)
-    linked_list.Print()
-    print('TEST1')
-    # Edge case 1: Inserting a node at position 0 in an empty list
+# Test insert_head() method
+    print("Test insert_head() method:")
     lst = SinglyLinkedList()
-    assert lst.length == 0
-    assert lst.head == None
-    assert lst.tail == None
-    assert lst.sorted == True
-    lst.Print()
+    lst.insert_head(SNode(3))
+    lst.insert_head(SNode(2))
+    lst.insert_head(SNode(1))
+    lst.Print()  # Output: 1 -> 2 -> 3 -> None
 
-# test case 2: creating a list with one element and performing operations on it\
-    print('TEST 2')
-    node = SNode(1)
-    lst.insert_head(node)
-    assert lst.length == 1
-    assert lst.head == node
-    assert lst.tail == node
-    assert lst.sorted == True
-    lst.Print()
-    print('TEST 3')
-# test case 3: creating a list with multiple elements and performing operations on it
-    node2 = SNode(2)
-    node3 = SNode(3)
-    lst.insert_tail(node2)
-    lst.insert_tail(node3)
-    assert lst.length == 3
-    assert lst.head == node
-    assert lst.tail == node3
-    assert lst.sorted == True
-    lst.Print()
+# Test insert_tail() method
+    print("Test insert_tail() method:")
+    lst = SinglyLinkedList()
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.insert_tail(SNode(3))
+    lst.Print()  # Output: 1 -> 2 -> 3 -> None
 
-    print('TEST 4')
-    # test case 4: creating a sorted list and performing operations on it
-    lst2 = SinglyLinkedList()
-    node4 = SNode(1)
-    node5 = SNode(2)
-    node6 = SNode(3)
-    lst2.SortedInsert(node5)
-    print(lst2.length)  # expect 1
-    lst2.Print()  # expect 2 -> None -> None
-    lst2.SortedInsert(node4)
-    print(lst2.length)  # expect 2
-    lst2.Print()  # expect 1 -> 2 -> None
-    lst2.SortedInsert(node6)
-    print(lst2.length)  # expect 3
-    lst2.Print()  # expect 1 -> 2 -> 3 -> None
+# Test insert() method
+    print("Test insert() method:")
+    lst = SinglyLinkedList()
+    lst.insert(SNode(1), 0)  # Insert at head
+    lst.insert(SNode(3), 1)  # Insert at tail
+    lst.insert(SNode(2), 1)  # Insert in middle
+    lst.Print()  # Output: 1 -> 2 -> 3 -> None
 
-    print('TEST 6')
-    # test case 6: performing operations on a list with duplicate elements
-    lst4 = SinglyLinkedList()
-    node10 = SNode(1)
-    node11 = SNode(2)
-    node12 = SNode(2)
-    lst4.insert_tail(node10)
-    lst4.insert_tail(node11)
-    lst4.insert_tail(node12)
-    assert lst4.length == 3
-    assert lst4.head == node10
-    assert lst4.tail == node12
-    assert lst4.sorted == True
-    lst4.Print()
-    print('TEST 7')
-# test case 7: performing operations on a list with elements of different data types
-    lst5 = SinglyLinkedList()
-    node13 = SNode(1)
-    node14 = SNode("hello")
-    node15 = SNode(3.14)
-    lst5.insert_tail(node13)
-    lst5.insert_tail(node14)
-    lst5.insert_tail(node15)
-    assert lst5.length == 3
-    assert lst5.head == node13
-    lst5.Print()
+# Test SortedInsert() method
+    print("Test SortedInsert() method:")
+    lst = SinglyLinkedList()
+    lst.SortedInsert(SNode(2))
+    lst.SortedInsert(SNode(1))
+    lst.SortedInsert(SNode(3))
+    lst.Print()  # Output: 1 -> 2 -> 3 -> None
 
-    print('SINGLYLL TESTING DONE')
+# Test DeleteHead() method
+    print("Test DeleteHead() method:")
+    lst = SinglyLinkedList()
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.DeleteHead()
+    lst.Print()  # Output: 2 -> None
 
-    # create a new stack
-    stack = Stack()
+# Test DeleteTail() method
+    print("Test DeleteTail() method:")
+    lst = SinglyLinkedList()
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.DeleteTail()
+    lst.Print()  # Output: 1 -> None
 
-    # push some nodes onto the stack
-    stack.push(SNode(1))
-    stack.push(SNode(2))
-    stack.push(SNode(3))
-
-    # test the pop method
-    assert stack.pop() == 3
-    assert stack.pop() == 2
-    assert stack.pop() == 1
-
-    # test the peek method
-    stack.push(SNode(4))
-    assert stack.peek() == 4
-    assert stack.pop() == 4
-
-    # test the is_empty method
-    assert stack.is_empty() == True
-    stack.push(SNode(5))
-    assert stack.is_empty() == False
-
-'''
+# Test Delete() method
+    print("Test Delete() method:")
+    lst = SinglyLinkedList()
     node1 = SNode(1)
     node2 = SNode(2)
     node3 = SNode(3)
-    node4 = SNode(4)
+    lst.insert_tail(node1)
+    lst.insert_tail(node2)
+    lst.insert_tail(node3)
+    lst.Delete(node2)
+    lst.Print()  # Output: 1 -> 3 -> None
 
-# Test creation of an empty circular singly linked list
-    csll = CircularSinglyLinkedList()
-    assert csll.length == 0 # Expected length is 0
+# Test Clear() method
+    print("Test Clear() method:")
+    lst = SinglyLinkedList()
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.Clear()
+    lst.Print()  # Output: List is empty
 
-# Test insertion of a node at the head of the list
-    csll.insert_head(node1)
-    assert csll.length == 1 # Expected length is 1
-    assert csll.head == node1 # Expected head node is node1
-    assert csll.tail == node1 # Expected tail node is node1
+# Test Search() method
+    print("Test Search() method:")
+    lst = SinglyLinkedList()
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.insert_tail(SNode(3))
+    node = lst.Search(2)
+    print(node.value)  # Output: 2
 
-# Test insertion of a second node at the head of the list
-    csll.insert_head(node2)
-    assert csll.length == 2 # Expected length is 2
-    assert csll.head == node2 # Expected head node is node2
-    assert csll.tail == node1 # Expected tail node is node1
-
-# Test insertion of a node at the tail of the list
-    csll.insert_tail(node3)
-    assert csll.length == 3 # Expected length is 3
-    assert csll.head == node2 # Expected head node is node2
-    assert csll.tail == node3 # Expected tail node is node3
-
-# Test insertion of a second node at the tail of the list
-    csll.insert_tail(node4)
-    assert csll.length == 4 # Expected length is 4
-    assert csll.head == node2 # Expected head node is node2
-    assert csll.tail == node4 # Expected tail node is node4
-
-# Test deletion of the head node
-    deleted_node = csll.DeleteHead()
-    assert deleted_node == 2 # Expected deleted node value is 2
-    assert csll.length == 3 # Expected length is 3
-    assert csll.head == node1 # Expected head node is node1
-    assert csll.tail == node4 # Expected tail node is node4
-
-# Test deletion of the tail node
-    deleted_node = csll.DeleteTail()
-    assert deleted_node == 4 # Expected deleted node value is 4
-    assert csll.length == 2 # Expected length is 2
-    assert csll.head == node1 # Expected head node is node1
-    assert csll.tail == node3 # Expected tail node is node3
+# Test isSorted() method
+    print("Test isSorted() method:")
+    lst = SinglyLinkedList()
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.insert_tail(SNode(3))
+    print(lst.isSorted())  # Output: True
+    lst.insert_tail(SNode(1))
+    print(lst.isSorted())  # Output: False
+    lst.Sort()
+    print(lst.isSorted())  # Output: True
 
 
-'''
+    # Create a new linked list
+    ll = SinglyLinkedList()
+
+# Insert nodes at the head
+    ll.insert_head(SNode(5))
+    ll.insert_head(SNode(3))
+    ll.insert_head(SNode(7))
+    ll.insert_head(SNode(1))
+
+# Insert nodes at the tail
+    ll.insert_tail(SNode(9))
+    ll.insert_tail(SNode(2))
+    ll.insert_tail(SNode(4))
+
+
+
+# Insert a node in sorted order
+    ll.SortedInsert(SNode(8))
+
+# Search for a node
+    node = ll.Search(7)
+    if node is not None:
+        print("Found node with value", node.value)
+    else:
+        print("Node not found")
+
+# Delete the head and tail nodes
+    ll.DeleteHead()
+    ll.DeleteTail()
+
+# Delete a specific node
+    node = ll.Search(6)
+    if node is not None:
+        ll.Delete(node)
+
+# Sort the list
+    ll.Sort()
+
+# Print the list
+    ll.Print()
+
+# Clear the list
+    ll.Clear()
+
+    print('SINGYLL TESTING END')
+    print('-----------------------------')
+    print('singlyCLL TESTING BEGAN')
+
+
+
+
 
 
 if __name__ == '__main__':

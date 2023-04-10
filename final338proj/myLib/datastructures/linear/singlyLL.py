@@ -8,12 +8,23 @@ class SinglyLinkedList:
         
         
     def insert_head(self, node):
-        node.next = self.head
-        self.head = node
-        if self.tail is None:
+        if self.head is None:
+            self.head = node
             self.tail = node
-        self.length += 1
-        self.sorted = False
+            self.length += 1
+            self.sorted = True
+        else:
+            if node.value <= self.head.value:
+                node.next = self.head
+                self.head = node
+                self.length += 1
+                self.sorted = True
+            else:
+                self.head.next = node
+                self.head = node
+                self.length += 1
+                self.sorted = False
+
 
     
     def insert_tail(self, node):
@@ -27,18 +38,28 @@ class SinglyLinkedList:
         self.sorted = False
 
     def insert(self, node, position):
+        if position < 0:
+            raise ValueError("Position must be non-negative")
+
         if position == 0:
             self.insert_head(node)
-        elif position >= self.length:
-            self.insert_tail(node)
         else:
             curr = self.head
-            for i in range(position-1):
+            for i in range(position - 1):
+                if curr is None:
+                    raise ValueError("Position is out of range")
                 curr = curr.next
+
+            if curr is None:
+                raise ValueError("Position is out of range")
+
             node.next = curr.next
             curr.next = node
-            self.length += 1
-            self.sorted = False
+            if node.next is None:
+                self.tail = node
+
+        self.length += 1
+
 
     def SortedInsert(self, node):
         if self.head is None:
@@ -94,23 +115,23 @@ class SinglyLinkedList:
         self.length -= 1
     
     def DeleteTail(self):
-        if self.head is None:
-            return None
-        elif self.head == self.tail:
-            value = self.head.value
+        if self.tail is None:
+            return  # list is empty
+        if self.head == self.tail:  # if there is only one node in the list
             self.head = None
             self.tail = None
-            self.length -= 1
-            return value
+            self.length = 0
+            self.sorted = True
         else:
             current = self.head
-        while current.next is not self.tail:
-            current = current.next
-        value = self.tail.value
-        self.tail = current
-        self.tail.next = None
-        self.length -= 1
-        return value
+            while current.next is not None and current.next is not self.tail:
+                current = current.next
+            current.next = None
+            self.tail = current
+            self.length -= 1
+            self.sorted = False
+
+
 
     
     def Delete(self, node):
@@ -134,6 +155,27 @@ class SinglyLinkedList:
                 self.tail = current_node
             self.length -= 1
             return node.value
+        
+    def Sort(self):
+        if self.head is None:
+            return
+        
+        current = self.head
+        while current is not None:
+            min_node = current
+            runner = current.next
+            while runner is not None:
+                if runner.value < min_node.value:
+                    min_node = runner
+                runner = runner.next
+            
+            if min_node != current:
+                current.value, min_node.value = min_node.value, current.value
+            
+            current = current.next
+        
+        self.sorted = True
+
 
 
     def Clear(self):
