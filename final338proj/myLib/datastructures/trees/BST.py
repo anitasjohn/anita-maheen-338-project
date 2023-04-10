@@ -1,4 +1,4 @@
-from TNode import TNode
+from myLib.datastructures.nodes.TNode import TNode
 from queue import Queue
 
 class BST:

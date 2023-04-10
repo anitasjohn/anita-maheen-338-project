@@ -1,5 +1,5 @@
+from myLib.datastructures.nodes.TNode import TNode
 from BST import BST
-from TNode import TNode
 from AVL import AVL
 
 tree1 = BST()
