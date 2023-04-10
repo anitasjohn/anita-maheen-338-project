@@ -1,14 +1,3 @@
-'''
-import os
-import sys
-
-# get the path to the nodes directory
-nodes_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nodes'))
-sys.path.append(nodes_path)
-
-# import SNode from the nodes directory
-from SNode import SNode'''
-
 
 
 from myLib.datastructures.linear.singlyLL import SinglyLinkedList

@@ -7,12 +7,12 @@ sys.path.append(nodes_path)
 
 # import SNode from the nodes directory
 from DNode import DNode'''
-from myLib.datastructures.nodes import DNode
 
 
 
 
-from singlyLL import SinglyLinkedList
+
+from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 
 class DoublyLinkedList(SinglyLinkedList):
     def __init__(self):

@@ -1,4 +1,4 @@
-from singlyLL import SinglyLinkedList
+from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 
 
 class Queue(SinglyLinkedList):
