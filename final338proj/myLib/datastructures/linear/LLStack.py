@@ -1,5 +1,3 @@
-
-
 from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 
 class Stack(SinglyLinkedList):
@@ -23,10 +21,15 @@ class Stack(SinglyLinkedList):
     def pop(self):
         value = self.head.value
         self.DeleteHead()
+        if self.length == 0:
+            self.head = None
         return value
 
     def peek(self):
-        return self.head.value
+        if self.head is not None:
+            return self.head.value
+        else:
+            return None
 
     def is_empty(self):
         return self.length == 0
