@@ -11,12 +11,10 @@ class SinglyLinkedList:
         if self.head is None:
             self.head = node
             self.tail = node
-            self.length += 1
             self.sorted = True
         else:
             node.next = self.head
             self.head = node
-            self.length += 1
             self.sorted = False
 
 
@@ -89,7 +87,6 @@ class SinglyLinkedList:
             current = current.next
         return is_sorted
 
-
     def Search(self, value):
         current = self.head
         while current is not None:
@@ -107,6 +104,7 @@ class SinglyLinkedList:
             self.tail = None
         self.head = self.head.next
         self.length -= 1
+
     
     def DeleteTail(self):
         if self.tail is None:
