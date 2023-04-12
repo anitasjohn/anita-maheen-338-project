@@ -2,7 +2,9 @@ import pytest
 
 from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 from myLib.datastructures.nodes.SNode import SNode
-
+@pytest.fixture
+def lst():
+    return SinglyLinkedList()
 def test_insert_head():
     sll = SinglyLinkedList()
     sll.insert_head(SNode(1))
@@ -149,3 +151,39 @@ def test_DeleteTail():
     assert sll.tail.value == 2
     sll.DeleteTail()
     assert sll.tail.value == 1
+def test_delete(lst):
+    lst.insert_tail(SNode(1))
+    node2 = SNode(2)
+    lst.insert_tail(node2)
+    lst.insert_tail(SNode(3))
+    lst.Delete(node2)
+    assert lst.head.value == 1
+    assert lst.tail.value == 3
+    assert lst.length == 2
+def test_sort(lst):
+    lst.insert_tail(SNode(3))
+    lst.insert_tail(SNode(2))
+    lst.insert_tail(SNode(1))
+    lst.Sort()
+    assert lst.head.value == 1
+    assert lst.tail.value == 3
+    assert lst.length == 3
+def test_clear(lst):
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.Clear()
+    assert lst.head is None
+    assert lst.tail is None
+    assert lst.length == 0
+
+def test_print_empty(lst, capsys):
+    lst.Print()
+    captured = capsys.readouterr()
+    assert captured.out == "List is empty\n"
+
+def test_print_non_empty(lst, capsys):
+    lst.insert_tail(SNode(1))
+    lst.insert_tail(SNode(2))
+    lst.Print()
+    captured = capsys.readouterr()
+    assert captured.out == "1 -> 2 -> None\n"
