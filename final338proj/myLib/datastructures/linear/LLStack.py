@@ -1,4 +1,5 @@
 from myLib.datastructures.linear.singlyLL import SinglyLinkedList
+from myLib.datastructures.nodes.SNode import SNode
 
 class Stack(SinglyLinkedList):
     def __init__(self):
