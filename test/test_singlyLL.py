@@ -187,3 +187,58 @@ def test_print_non_empty(lst, capsys):
     lst.Print()
     captured = capsys.readouterr()
     assert captured.out == "1 -> 2 -> None\n"
+
+    llist = SinglyLinkedList()
+    node1 = SNode(1)
+    node2 = SNode(2)
+    llist.insert_head(node1)
+    llist.insert_head(node2)
+    assert llist.head == node2
+    assert llist.tail == node1
+def test_SortedInsert_unsorted_list():
+    llist = SinglyLinkedList()
+    node1 = SNode(2)
+    node2 = SNode(1)
+    llist.SortedInsert(node1)
+    llist.SortedInsert(node2)
+    assert llist.head == node2
+    assert llist.tail == node1
+
+def test_Search_value_not_in_list():
+    llist = SinglyLinkedList()
+    node = SNode(1)
+    llist.insert_head(node)
+    assert llist.Search(2) is None
+
+def test_SortedInsert_unsorted_list():
+    llist = SinglyLinkedList()
+    node1 = SNode(2)
+    node2 = SNode(1)
+    llist.SortedInsert(node1)
+    llist.SortedInsert(node2)
+    assert llist.head == node2
+    assert llist.tail == node1
+
+def test_insert_position_end_of_list():
+    llist = SinglyLinkedList()
+    node1 = SNode(1)
+    node2 = SNode(2)
+    node3 = SNode(3)
+    llist.insert_tail(node1)
+    llist.insert_tail(node2)
+    llist.insert(node3, 2)
+    assert llist.tail == node3
+def test_insert_negative_position():
+    llist = SinglyLinkedList()
+    node = SNode(1)
+    with pytest.raises(ValueError):
+        llist.insert(node, -1)
+
+def test_insert_position_zero():
+    llist = SinglyLinkedList()
+    node1 = SNode(1)
+    node2 = SNode(2)
+    llist.insert(node1, 0)
+    llist.insert(node2, 0)
+    assert llist.head == node2
+    assert llist.tail == node1
