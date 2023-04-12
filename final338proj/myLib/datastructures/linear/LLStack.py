@@ -4,32 +4,55 @@ class Stack(SinglyLinkedList):
     def __init__(self):
         super().__init__()
 
-    # override methods from SinglyLinkedList that do not apply to stack behavior
+    def push(self, node):
+        self.insert_head(node)
+
+    def pop(self):
+        if self.head is None:
+            return None
+
+        node = self.head
+        self.head = self.head.next
+        self.length -= 1
+        return node.value
+
+    def peek(self):
+        if self.head is None:
+            return None
+
+        return self.head.value
+
+    def is_empty(self):
+        return self.head is None
+
+    # overriding the InsertTail method with empty body
     def insert_tail(self, node):
         pass
 
+    # overriding the insert method with empty body
     def insert(self, node, position):
         pass
 
-    def sortedInsert(self, node):
+    # overriding the SortedInsert method with empty body
+    def SortedInsert(self, node):
         pass
 
-    # define wrappers with proper naming conventions for stack functionality
-    def push(self, node):
-        super().insert_head(node)
+    # overriding the DeleteHead method with empty body
+    def DeleteHead(self):
+        pass
 
-    def pop(self):
-        value = self.head.value
-        self.DeleteHead()
-        if self.length == 0:
-            self.head = None
-        return value
+    # overriding the DeleteTail method with empty body
+    def DeleteTail(self):
+        pass
 
-    def peek(self):
-        if self.head is not None:
-            return self.head.value
-        else:
-            return None
+    # overriding the Delete method with empty body
+    def Delete(self, node):
+        pass
 
-    def is_empty(self):
-        return self.length == 0
+    # overriding the Sort method with empty body
+    def Sort(self):
+        pass
+
+    # overriding the Print method with empty body
+    def Print(self):
+        pass
