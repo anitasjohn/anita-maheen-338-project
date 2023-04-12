@@ -14,16 +14,10 @@ class SinglyLinkedList:
             self.length += 1
             self.sorted = True
         else:
-            if node.value <= self.head.value:
-                node.next = self.head
-                self.head = node
-                self.length += 1
-                self.sorted = True
-            else:
-                self.head.next = node
-                self.head = node
-                self.length += 1
-                self.sorted = False
+            node.next = self.head
+            self.head = node
+            self.length += 1
+            self.sorted = False
 
 
     
