@@ -132,12 +132,20 @@ def test_search():
     sll.insert_tail(node3)
     assert sll.Search(2) == node2
     assert sll.Search(4) == None
-def test_delete_head():
+def test_delete_head_from_empty_list():
     sll = SinglyLinkedList()
-    sll.insert_head(SNode(1))
-    sll.insert_head(SNode(2))
-    sll.insert_head(SNode(3))
     sll.DeleteHead()
-    assert sll.length == 2
-
-
+    assert sll.length == 0
+def test_DeleteTail():
+    sll = SinglyLinkedList()
+    sll.DeleteTail()
+    assert sll.head is None
+    assert sll.tail is None
+    assert sll.length == 0
+    sll.insert_tail(SNode(1))
+    sll.insert_tail(SNode(2))
+    sll.insert_tail(SNode(3))
+    sll.DeleteTail()
+    assert sll.tail.value == 2
+    sll.DeleteTail()
+    assert sll.tail.value == 1

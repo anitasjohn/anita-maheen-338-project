@@ -104,24 +104,25 @@ class SinglyLinkedList:
             self.tail = None
         self.head = self.head.next
         self.length -= 1
+    
+
 
     
     def DeleteTail(self):
-        if self.tail is None:
-            return  # list is empty
-        if self.head == self.tail:  # if there is only one node in the list
+        if self.head is None:
+            return
+        if self.head.next is None:
             self.head = None
             self.tail = None
-            self.length = 0
-            self.sorted = True
-        else:
-            current = self.head
-            while current.next is not None and current.next is not self.tail:
-                current = current.next
-            current.next = None
-            self.tail = current
             self.length -= 1
-            self.sorted = False
+            return
+        current = self.head
+        while current.next.next is not None:
+            current = current.next
+        current.next = None
+        self.tail = current
+        self.length -= 1
+
 
 
 
