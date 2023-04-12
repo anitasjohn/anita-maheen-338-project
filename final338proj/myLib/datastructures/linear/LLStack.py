@@ -20,10 +20,8 @@ class Stack(SinglyLinkedList):
         super().insert_head(node)
 
     def pop(self):
-        print(f"Before pop - head: {self.head}, length: {self.length}")
         value = self.head.value
         self.DeleteHead()
-        print(f"After pop - head: {self.head}, length: {self.length}")
         if self.length == 0:
             self.head = None
         return value
