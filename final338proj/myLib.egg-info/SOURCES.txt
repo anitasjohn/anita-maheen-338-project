@@ -14,4 +14,5 @@ myLib/datastructures/linear/singlyCLL.py
 myLib/datastructures/linear/singlyLL.py
 myLib/datastructures/nodes/DNode.py
 myLib/datastructures/nodes/SNode.py
+myLib/datastructures/nodes/TNode.py
 myLib/datastructures/nodes/__init__.py
