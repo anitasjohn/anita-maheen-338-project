@@ -62,12 +62,12 @@ class DoublyLinkedList(SinglyLinkedList):
         if self.head is None:
             return None
         elif self.head == self.tail:
-            value = self.tail.data
+            value = self.tail.value
             self.head = None
             self.tail = None
             return value
         else:
-            value = self.tail.data
+            value = self.tail.value
             self.tail.previous.next = None
             self.tail = self.tail.previous
             self.length -= 1
