@@ -48,7 +48,7 @@ class CircularDoublyLinkedList(DoublyLinkedList):
 
     def DeleteHead(self):
         if self.head is None:
-            return
+            return None
         if self.head.next is None:
             self.tail = None
         else:
@@ -57,6 +57,7 @@ class CircularDoublyLinkedList(DoublyLinkedList):
         self.head.previous = self.tail
         self.tail.next = self.head
         self.length -= 1
+
 
     def DeleteTail(self):
         if self.head is None:
