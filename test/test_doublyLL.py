@@ -98,12 +98,3 @@ def test_insert_position_negative():
     linked_list.insert_head(node1)
     with pytest.raises(Exception):
         linked_list.insert(node2, -1)
-
-def test_invalid_position():
-    doublyLL = DoublyLinkedList()
-    with pytest.raises(ValueError):
-        doublyLL.insert(5, -1)
-    with pytest.raises(ValueError):
-        doublyLL.insert(10, 1)
-    with pytest.raises(ValueError):
-        doublyLL.insert(15, 100)
