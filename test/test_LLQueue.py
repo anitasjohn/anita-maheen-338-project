@@ -163,8 +163,9 @@ def test_is_empties():
 def test_peek_empty_queue():
     q = Queue()
     assert q.peek() == None
-
-def test_peek_one_item_queue():
+def test_is_empty_false():
     q = Queue()
     q.enqueue(1)
-    assert q.peek() == 1
+    assert q.is_empty() == False
+
+
