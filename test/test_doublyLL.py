@@ -3,6 +3,18 @@ from myLib.datastructures.nodes.DNode import DNode
 
 import pytest
 
+@pytest.fixture
+def empty_dlist():
+    return DoublyLinkedList()
+
+@pytest.fixture
+def dlist_with_nodes():
+    dlist = DoublyLinkedList()
+    dlist.insert_head(DNode(1))
+    dlist.insert_tail(DNode(2))
+    dlist.insert(DNode(3), 1)
+    return dlist
+
 def test_insert_head():
     dll = DoublyLinkedList()
     node = DNode(5)
@@ -64,3 +76,38 @@ def test_Delete():
     assert dll.head.next.value == 15
     assert dll.tail.value == 15
 
+
+
+def test_insert_head(empty_dlist):
+    node = DNode(1)
+    empty_dlist.insert_head(node)
+    assert empty_dlist.head == node
+    assert empty_dlist.tail == node
+def test_insert_tail(empty_dlist):
+    node = DNode(1)
+    empty_dlist.insert_tail(node)
+    assert empty_dlist.head == node
+    assert empty_dlist.tail == node
+
+def test_insert_position_negative():
+    linked_list = DoublyLinkedList()
+    node1 = DNode(1)
+    node2 = DNode(2)
+    with pytest.raises(Exception):
+        linked_list.insert(node1, -1)
+    linked_list.insert_head(node1)
+    with pytest.raises(Exception):
+        linked_list.insert(node2, -1)
+def test_insert_position_gt_length():
+    linked_list = DoublyLinkedList()
+    node1 = DNode(1)
+    node2 = DNode(2)
+    node3 = DNode(3)
+    linked_list.insert_tail(node1)
+    linked_list.insert_tail(node2)
+    linked_list.insert(node3, 5)
+    assert linked_list.head == node1
+    assert linked_list.tail == node3
+    assert linked_list.head.next == node2
+    assert linked_list.tail.previous == node2
+    assert linked_list.length == 3

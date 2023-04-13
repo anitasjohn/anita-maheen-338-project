@@ -1,12 +1,4 @@
-'''import os
-import sys
 
-# get the path to the nodes directory
-nodes_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'nodes'))
-sys.path.append(nodes_path)
-
-# import SNode from the nodes directory
-from DNode import DNode'''
 
 
 
@@ -34,6 +26,9 @@ class DoublyLinkedList(SinglyLinkedList):
             self.length += 1
 
     def insert(self, node, position):
+        if position < 0 or position > self.length:
+            raise ValueError('Invalid position')
+
         if position == 0:
             self.insert_head(node)
         elif position >= self.length:
@@ -47,6 +42,7 @@ class DoublyLinkedList(SinglyLinkedList):
             curr.next.previous = node
             curr.next = node
             self.length += 1
+
 
     def DeleteHead(self):
         if self.head is None:
