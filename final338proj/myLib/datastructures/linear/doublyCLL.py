@@ -1,24 +1,14 @@
-from myLib.datastructures.nodes import DNode
+from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 
-
-from myLib.datastructures.linear.doublyLL import DoublyLinkedList
-
-from doublyLL import DoublyLinkedList
-
-class CircularDoublyLinkedList(DoublyLinkedList):
+class DoublyLinkedList(SinglyLinkedList):
     def __init__(self):
         super().__init__()
-        if self.head is not None:
-            self.head.previous = self.tail
-        if self.tail is not None:
-            self.tail.next = self.head
+        self.tail = None
 
     def insert_head(self, node):
         super().insert_head(node)
         if self.head.next is not None:
             self.head.next.previous = self.head
-        self.head.previous = self.tail
-        self.tail.next = self.head
 
     def insert_tail(self, node):
         if self.tail is None:
@@ -27,8 +17,6 @@ class CircularDoublyLinkedList(DoublyLinkedList):
             node.previous = self.tail
             self.tail.next = node
             self.tail = node
-            self.tail.next = self.head
-            self.head.previous = self.tail
             self.length += 1
 
     def insert(self, node, position):
@@ -54,8 +42,6 @@ class CircularDoublyLinkedList(DoublyLinkedList):
         else:
             self.head.next.previous = None
         self.head = self.head.next
-        self.head.previous = self.tail
-        self.tail.next = self.head
         self.length -= 1
 
     def DeleteTail(self):
@@ -70,8 +56,6 @@ class CircularDoublyLinkedList(DoublyLinkedList):
             value = self.tail.value
             self.tail.previous.next = None
             self.tail = self.tail.previous
-            self.tail.next = self.head
-            self.head.previous = self.tail
             self.length -= 1
             return value
 
@@ -81,13 +65,11 @@ class CircularDoublyLinkedList(DoublyLinkedList):
         elif self.head == node:
             self.head = node.next
             if self.head is not None:
-                self.head.previous = self.tail
-                self.tail.next = self.head
+                self.head.previous = None
             return node.value
         elif self.tail == node:
             self.tail = node.previous
-            self.tail.next = self.head
-            self.head.previous = self.tail
+            self.tail.next = None
             return node.value
         else:
             node.previous.next = node.next
