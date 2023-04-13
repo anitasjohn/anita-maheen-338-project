@@ -98,3 +98,46 @@ def test_insert_position_negative():
     linked_list.insert_head(node1)
     with pytest.raises(Exception):
         linked_list.insert(node2, -1)
+def test_delete_tail_empty_list():
+    doubly_ll = DoublyLinkedList()
+    assert doubly_ll.DeleteTail() == None
+    assert doubly_ll.head == None
+    assert doubly_ll.tail == None
+
+def test_delete_head_empty_list():
+    doubly_ll = DoublyLinkedList()
+    doubly_ll.DeleteHead()
+    assert doubly_ll.head == None
+    assert doubly_ll.tail == None
+def test_delete_node_not_in_list():
+    dll = DoublyLinkedList()
+    
+    node = DNode(1)
+    assert dll.Delete(node) == None
+
+def test_insert_position_greater_than_length():
+    dll = DoublyLinkedList()
+    dll.insert(DNode(1), 10)
+    assert dll.head.value == 1
+    assert dll.tail.value == 1
+
+def test_delete_tail_empty_list():
+    dll = DoublyLinkedList()
+    assert dll.DeleteTail() == None
+
+def test_delete_middle_node():
+    dll = DoublyLinkedList()
+    node1 = DNode(1)
+    node2 = DNode(2)
+    node3 = DNode(3)
+    dll.insert_head(node1)
+    dll.insert_tail(node2)
+    dll.insert_tail(node3)
+    assert dll.Delete(node2) == 2
+    assert dll.head.value == 1
+    assert dll.tail.value == 3
+    assert dll.head.next.value == 3
+    assert dll.tail.previous.value == 1
+
+
+
