@@ -1,30 +1,38 @@
 from myLib.datastructures.linear.singlyLL import SinglyLinkedList
 
 
-class Queue(SinglyLinkedList):
+class Queue:
     def __init__(self):
-        super().__init__()
-        
+        self.front = None
+        self.rear = None
+
+    def is_empty(self):
+        return self.front is None
+
     def enqueue(self, node):
-        """Inserts the node at the tail of the queue."""
-        super().insert_tail(node)
-        
+        if self.rear is None:
+            self.front = node
+            self.rear = node
+        else:
+            self.rear.next = node
+            self.rear = node
+
     def dequeue(self):
-        """Removes and returns the node at the head of the queue."""
-        if self.head is None:
+        if self.front is None:
             return None
         else:
-            node = self.head
-            self.head = node.next
-            if self.head is None:
-                self.tail = None
-            self.length -= 1
-            return node.value
+            temp = self.front
+            self.front = self.front.next
+            if self.front is None:
+                self.rear = None
+            return temp.value
+
     def peek(self):
-        if self.head is None:
+        if self.front is None:
             return None
         else:
-            return self.head.value
+            return self.front.value
+
         
     # Override methods that are not applicable to queue with empty body methods
     def SortedInsert(self, node):
