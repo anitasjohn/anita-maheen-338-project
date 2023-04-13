@@ -1,4 +1,4 @@
-from final338proj.myLib.datastructures.nodes.TNode import TNode
+from myLib.datastructures.nodes.TNode import TNode
 from BST import BST
 from AVL import AVL
 
