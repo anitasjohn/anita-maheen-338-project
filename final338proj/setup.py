@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-setup(name='myLib',
+setup(name='anita-maheen-338-package',
       version='1.0',
       description='a simple library providing various datastructures',
       author='Anita John, Maheen Raza',
