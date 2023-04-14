@@ -85,4 +85,28 @@ def test_empty_list():
     assert cll.DeleteHead() is None
     assert cll.DeleteTail() is None
     assert cll.Delete(DNode(10)) is None
-    
+def test_delete_node():
+    c_dll = CircularDoublyLinkedList()
+    node1 = DNode(1)
+    node2 = DNode(2)
+    node3 = DNode(3)
+    c_dll.insert_head(node1)
+    c_dll.insert_tail(node3)
+    c_dll.insert(node2, 1)
+    assert c_dll.Delete(node2) == 2
+    assert c_dll.head is node1
+    assert c_dll.tail is node3
+    assert c_dll.head.next is node3
+    assert c_dll.tail.previous is node1
+    assert c_dll.length == 2
+
+
+def test_insert_tail_empty_list():
+     lst = CircularDoublyLinkedList()
+     node = DNode(1)
+     lst.insert_tail(node)
+     assert lst.head == node
+     assert lst.tail == node
+     assert lst.head.prev == lst.tail
+     assert lst.tail.next == lst.head
+     assert lst.length == 1
