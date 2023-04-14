@@ -90,16 +90,16 @@ def delete(self, val):
         node.set_data(succ.get_data())
         curr = succ.get_right()
         parent = succ.get_parent()
+        if curr is not None:
+            curr.set_parent(parent)
         if parent.get_left() == succ:
             parent.set_left(curr)
         else:
             parent.set_right(curr)
-        if curr is not None:
-            curr.set_parent(parent)
         result = self._print_in_order_helper(self.root, [])
         if node.get_data() in result:
             result.remove(node.get_data())
-
+        del succ
 
 
     def search(self, val):
@@ -153,6 +153,5 @@ def delete(self, val):
         while curr.get_left() is not None:
             curr = curr.get_left()
         return curr
-
 
 

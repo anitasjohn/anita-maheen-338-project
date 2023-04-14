@@ -58,7 +58,7 @@ def test_delete_node_with_two_children(bst):
     assert bst.search(6).get_data() == 6
     assert bst.search(8).get_data() == 8
 
-def test_search(bst):
+def test_searchs(bst):
     assert bst.search(7).get_data() == 7
     assert bst.search(2) is None
 def test_print_in_order(capsys, bst):
@@ -73,19 +73,62 @@ def test_print_bf(capsys, bst):
 
 
 
+def test_search():
+    bst = BST()
+    bst.insert(5)
+    bst.insert(3)
+    bst.insert(7)
+    assert bst.search(2) is None
+    assert isinstance(bst.search(3), TNode)
+    assert isinstance(bst.search(5), TNode)
+    assert isinstance(bst.search(7), TNode)
+    assert bst.search(10) is None
 
 
 
 
+def test_print_in_order(capsys):
+    bst = BST(TNode(5))
+    bst.insert(3)
+    bst.insert(7)
+    bst.insert(1)
+    bst.insert(9)
+    bst.print_in_order()
+    captured = capsys.readouterr()
+    assert captured.out == "1 3 5 7 9\n"
+
+def test_print_bf(capsys):
+    bst = BST(TNode(5))
+    bst.insert(3)
+    bst.insert(7)
+    bst.insert(1)
+    bst.insert(9)
+    bst.print_bf()
+    captured = capsys.readouterr()
+    assert captured.out == "5 \n3 7 \n1 9 \n"
 
 
 
 
-
-
-
-
-
+def test_empty_tree():
+    bst = BST()
+    assert bst.get_root() is None
+    assert bst.search(5) is None
+    bst.print_in_order() # should return nothing
+    bst.print_bf() # should return nothing
+    bst.delete(5) # should return "Value not found in the tree"
+def test_single_node_tree():
+    bst = BST(TNode(5))
+    assert bst.get_root().get_data() == 5
+    assert bst.search(5).get_data() == 5
+    bst.print_in_order() # should return 5
+    bst.print_bf() # should return 5
+    bst.delete(5)
+    assert bst.get_root() is None
+    assert bst.search(5) is None
+    bst.print_in_order() # should return nothing
+    bst.print_bf() # should return nothing
+    bst.delete(5) # should return "Value not found in the tree"
 
 
 
