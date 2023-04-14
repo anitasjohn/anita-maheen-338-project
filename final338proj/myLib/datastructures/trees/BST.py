@@ -52,55 +52,54 @@ class BST:
                     break
                 curr_node = curr_node.get_right()
 
-def delete(self, val):
-    if self.root is None:
-        print("Value not found in the tree")
-        return
-    node = self.search(val)
-    if node is None:
-        print("Value not found in the tree")
-        return
-    parent = node.get_parent()
-    if node.get_left() is None and node.get_right() is None:
-        if parent is None:
-            self.root = None
-        elif node == parent.get_left():
-            parent.set_left(None)
+    def delete(self, val):
+        if self.root is None:
+            print("Value not found in the tree")
+            return
+        node = self.search(val)
+        if node is None:
+            print("Value not found in the tree")
+            return
+        parent = node.get_parent()
+        if node.get_left() is None and node.get_right() is None:
+            if parent is None:
+                self.root = None
+            elif node == parent.get_left():
+                parent.set_left(None)
+            else:
+                parent.set_right(None)
+            result = self._print_in_order_helper(self.root, [])
+            if node.get_data() in result:
+                result.remove(node.get_data())
+            del node
+        elif node.get_left() is None or node.get_right() is None:
+            child = node.get_left() or node.get_right()
+            child.set_parent(parent)  # update child's parent pointer
+            if parent is None:
+                self.root = child
+            elif node == parent.get_left():
+                parent.set_left(child)
+            else:
+                parent.set_right(child)
+            result = self._print_in_order_helper(self.root, [])
+            if node.get_data() in result:
+                result.remove(node.get_data())
+            del node
         else:
-            parent.set_right(None)
-        result = self._print_in_order_helper(self.root, [])
-        if node.get_data() in result:
-            result.remove(node.get_data())
-        del node
-    elif node.get_left() is None or node.get_right() is None:
-        child = node.get_left() or node.get_right()
-        child.set_parent(parent) # update child's parent pointer
-        if parent is None:
-            self.root = child
-        elif node == parent.get_left():
-            parent.set_left(child)
-        else:
-            parent.set_right(child)
-        result = self._print_in_order_helper(self.root, [])
-        if node.get_data() in result:
-            result.remove(node.get_data())
-        del node
-    else:
-        succ = self.get_successor(node)
-        node.set_data(succ.get_data())
-        curr = succ.get_right()
-        parent = succ.get_parent()
-        if curr is not None:
-            curr.set_parent(parent)
-        if parent.get_left() == succ:
-            parent.set_left(curr)
-        else:
-            parent.set_right(curr)
-        result = self._print_in_order_helper(self.root, [])
-        if node.get_data() in result:
-            result.remove(node.get_data())
-        del succ
-
+            succ = self.get_successor(node)
+            node.set_data(succ.get_data())
+            curr = succ.get_right()
+            parent = succ.get_parent()
+            if curr is not None:
+                curr.set_parent(parent)
+            if parent.get_left() == succ:
+                parent.set_left(curr)
+            else:
+                parent.set_right(curr)
+            result = self._print_in_order_helper(self.root, [])
+            if node.get_data() in result:
+                result.remove(node.get_data())
+            del succ
 
     def search(self, val):
         curr = self.root
@@ -112,6 +111,7 @@ def delete(self, val):
             else:
                 curr = curr.get_right()
         return None
+
 
     def print_in_order(self):
         if self.root is None:
