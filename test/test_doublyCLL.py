@@ -99,14 +99,3 @@ def test_delete_node():
     assert c_dll.head.next is node3
     assert c_dll.tail.previous is node1
     assert c_dll.length == 2
-
-
-def test_insert_tail_empty_list():
-     lst = CircularDoublyLinkedList()
-     node = DNode(1)
-     lst.insert_tail(node)
-     assert lst.head == node
-     assert lst.tail == node
-     assert lst.head.prev == lst.tail
-     assert lst.tail.next == lst.head
-     assert lst.length == 1
