@@ -1,6 +1,6 @@
 
-from final338proj.myLib.datastructures.trees.BST import BST
-from final338proj.myLib.datastructures.nodes.TNode import TNode
+from myLib.datastructures.trees.BST import BST
+from myLib.datastructures.nodes.TNode import TNode
 from queue import Queue
 import pytest
 

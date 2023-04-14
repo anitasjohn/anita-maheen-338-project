@@ -1,21 +1,12 @@
 from myLib.datastructures.nodes.TNode import TNode
-from BST import BST
+from myLib.datastructures.trees.BST import BST
 from queue import Queue
 
 class AVL(BST):
     def __init__(self, root=None):
         super().__init__(root)
 
-    def __init__(self, val):
-        ## super().__init__(TNode(val))
-        super().insert(val)
-        self.balance_tree()
-
-    def __init__(self, obj):
-        self.root = obj
-        if self.root.get_left() is not None or self.root.get_right() is not None:
-            self.balance_tree()
-
+   
     def set_root(self, root):
         super().set_root(root)
         if self.root.get_left() is not None or self.root.get_right() is not None:
